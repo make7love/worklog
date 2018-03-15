@@ -1,2 +1,59 @@
 1. 沟通讨论亚特兰蒂斯现场升级问题；
 2. 进一步优化seaweedfs导入图片的脚本；
+3. 搭建R430虚拟平台，模拟亚特兰蒂斯现场环境；
+	源文件和目录已经备份回来，还原到虚拟环境，
+	只有数据库集群没有恢复；
+
+
+
+代办事项：
+--------------
+董超，你好！
+我们为了能够更好的承接运营商项目的运维工作，需要提前进行相关方面知识的储备，所以想了解下运营商项目系统使用的技术要点，
+我们提前去学习下相关的知识点。例如keepalive、mysql、nginx、集群等。
+
+
+
+10.0.0.128   255.255.254.0  10.0.0.1
+
+10.0.0.136-
+
+亚特兰蒂斯备份目录：
+/var/www
+/sunlight
+/usr/local/sunlight
+/etc/cron.d
+/usr/local/acserver
+-------------------------------------------------
+
+EPG服务器
+mydir=`date  +%Y%m%d-%H%M%S`
+mkdir -pv /home/inst-sunlight/bk/$mydir
+cd /home/inst-sunlight/bk/$mydir
+tar cvzf sunlight-`hostname`-`date  +%Y%m%d-%H%M%S`.tar.gz -C /usr/local/ sunlight
+tar cvzf html-`hostname`-`date  +%Y%m%d-%H%M%S`.tar.gz -C /var/ www
+tar cvzf html-`hostname`-`date  +%Y%m%d-%H%M%S`.tar.gz -C /var/lib/ mysql
+tar cvzf html-`hostname`-`date  +%Y%m%d-%H%M%S`.tar.gz -C /etc/ cron.d
+tar cvzf acserver-`hostname`-`date  +%Y%m%d-%H%M%S`.tar.gz -C /usr/local/ acserver
+tar cvzf acserver-`hostname`-`date  +%Y%m%d-%H%M%S`.tar.gz -C / sunlight
+mysqldump -E -R -u root sdb20>sdb20-`hostname`-`date  +%Y%m%d-%H%M%S`.sql
+
+
+/etc/php7
+/etc/my.cnf.d
+/root/bin
+/etc/nginx
+/etc/keepalived/keepalived.conf
+
+VOD服务器
+mydir=`date  +%Y%m%d-%H%M%S`
+mkdir -pv /home/inst-sunlight/bk/$mydir
+cd /home/inst-sunlight/bk/$mydir
+tar cvzf sunlight-`hostname`-`date  +%Y%m%d-%H%M%S`.tar.gz -C /usr/local/ sunlight
+tar cvzf acserver-`hostname`-`date  +%Y%m%d-%H%M%S`.tar.gz -C / sunlight
+mysqldump -E -R -u root sdb20>sdb20-`hostname`-`date  +%Y%m%d-%H%M%S`.sql
+
+ /etc/sysconfig/garb
+ /etc/keepalived/keepalived.conf
+ 
+ 
